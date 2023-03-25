@@ -18,7 +18,16 @@ namespace PigCastleDefence
         [SerializeField] private float _pushForce;
         [SerializeField] protected PigAnimationSettings _animationSettings;
 
+        [Header("Spawn Settings")]
+        [SerializeField] protected float _manaCost;
+
         protected Transform _target;
+
+        #endregion
+
+        #region Properties
+
+        public float ManaCost { get => _manaCost; }
 
         #endregion
 

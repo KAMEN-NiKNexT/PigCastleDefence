@@ -7,7 +7,7 @@ namespace PigCastleDefence
         #region Control Methods
 
         public void Ignite(float igniteDuration, float igniteDamage);
-        protected IEnumerator Burning(float igniteDuration, float igniteDamage);
+        public IEnumerator Burning(float igniteDuration, float igniteDamage);
 
         #endregion
     }

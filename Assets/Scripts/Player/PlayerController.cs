@@ -5,7 +5,7 @@ using Kamen.Joystick;
 
 namespace PigCastleDefence.Player
 {
-    [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(PlayerMovement), typeof(PlayerCombat))]
     public class PlayerController : MonoBehaviour
     {
         #region Variables
@@ -13,6 +13,8 @@ namespace PigCastleDefence.Player
         [Header("Variables")]
         [SerializeField] private Joystick _joystick;
         [SerializeField] private PlayerMovement _playerMovement;
+        [SerializeField] private PlayerCombat _playerCombat;
+
         private Vector3 _joystickValue;
 
         #endregion
@@ -27,6 +29,10 @@ namespace PigCastleDefence.Player
             {
                 _playerMovement.MoveCharacter(_joystickValue);
                 _playerMovement.RotateCharacter(_joystickValue);
+            }
+            else
+            {
+                _playerCombat.SpawnPig();
             }
         }
 
