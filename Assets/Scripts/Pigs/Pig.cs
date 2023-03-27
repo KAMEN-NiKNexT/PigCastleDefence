@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace PigCastleDefence
 {
@@ -10,8 +11,10 @@ namespace PigCastleDefence
         #region Variables
 
         [Header("Move Variables")]
-        [SerializeField] protected float _speed;
+        [SerializeField] protected float _moveSpeed;
+        [SerializeField] protected float _rotationSpeed;
         [SerializeField] protected float _attackRange;
+        [SerializeField] protected NavMeshAgent _agent;
 
         [Header("Attack Variables")]
         [SerializeField] protected float _damage;
@@ -21,7 +24,7 @@ namespace PigCastleDefence
         [Header("Spawn Settings")]
         [SerializeField] protected float _manaCost;
 
-        protected Transform _target;
+        protected Unit _target;
 
         #endregion
 
@@ -35,51 +38,35 @@ namespace PigCastleDefence
 
         public void Appear()
         {
-            transform.localScale = Vector3.zero;
-            transform.DOScale(Vector3.one, _animationSettings.AppearDuration).SetEase(_animationSettings.AppearEase);
-            MoveToTarget();
+            // TODO: Good appear method
+            //transform.localScale = Vector3.zero;
+            //transform.DOScale(Vector3.one, _animationSettings.AppearDuration).SetEase(_animationSettings.AppearEase);
+            StartCoroutine(MoveToTarget());
         }
 
-        private Transform FindClosestTarget()
+        protected virtual IEnumerator MoveToTarget()
         {
-            //TODO: fix this
-            KdTree<Transform> enemy = new KdTree<Transform>();
-            Transform target = enemy.FindClosest(transform.position);
-            return target;
-        }
-        private void MoveToTarget()
-        {
-            _target = FindClosestTarget();
-            StartCoroutine(MoveCoroutine());
-        }
-        protected virtual IEnumerator MoveCoroutine()
-        {
+            _target = EnemiesManager.Instance.GetClosestEnemy(transform.position);
             yield return new WaitForSeconds(_animationSettings.AppearDuration);
-            Vector3 direction;
-            while (_target != null && Vector3.Distance(transform.position, _target.position) > _attackRange)
-            {
-                direction = _target.position - transform.position;
-                transform.SetPositionAndRotation(Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime), Quaternion.LookRotation(direction));
 
+            while (_target != null && Vector3.Distance(transform.position, _target.transform.position) > _attackRange)
+            {
+                _agent.SetDestination(_target.transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, _agent.transform.rotation, _rotationSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _moveSpeed * Time.deltaTime);
                 yield return null;
             }
 
             if (_target != null) Attack();
-            else
-            {
-                Destroy();
-            }     
+            else Destroy();
         }
         protected virtual void Attack()
         {
             Vector3 pushDirection = (_target.transform.position - transform.position).normalized;
+            pushDirection.y = 0;
             _target.GetComponent<Rigidbody>().AddForce(pushDirection * _pushForce, ForceMode.Impulse);
-            TakeDamage();
-            //Destroy();
-        }
-        private void TakeDamage()
-        {
             if (_target.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(_damage);
+            Destroy();
         }
         private void Destroy()
         {

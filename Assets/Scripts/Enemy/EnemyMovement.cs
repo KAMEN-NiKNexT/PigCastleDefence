@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
 namespace PigCastleDefence.Enemy
 {
@@ -10,13 +8,13 @@ namespace PigCastleDefence.Enemy
         #region Variables
 
         [Header("Components")]
-        [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] protected NavMeshAgent _agent;
+        [SerializeField] protected Rigidbody _rigidbody;
 
         [Header("Movement settings")]
-        [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _rotationSpeed;
-        [SerializeField] private float _maxTargetDistance;
+        [SerializeField] protected float _moveSpeed;
+        [SerializeField] protected float _rotationSpeed;
+        [SerializeField] protected float _maxTargetDistance;
 
         [Header("Additional variables")]
         private Transform _target;
@@ -27,7 +25,7 @@ namespace PigCastleDefence.Enemy
 
         #region Control Methods
 
-        public bool MoveToTarget()
+        public virtual bool MoveToTarget()
         {
             _distanceFromTarget = Vector3.Distance(_target.transform.position, transform.position);
             if (_distanceFromTarget > _maxTargetDistance)

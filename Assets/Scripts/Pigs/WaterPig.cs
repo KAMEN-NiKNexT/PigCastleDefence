@@ -14,7 +14,7 @@ namespace PigCastleDefence
         {
             base.Attack();
 
-            Vector3 geyserPosition = _target.position;
+            Vector3 geyserPosition = _target.transform.position;
             geyserPosition.y = transform.position.y;
             GameObject geyser = Instantiate(_geyserPrefab, geyserPosition, Quaternion.identity);
         }

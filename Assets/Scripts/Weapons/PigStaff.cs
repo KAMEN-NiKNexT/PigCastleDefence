@@ -39,10 +39,11 @@ namespace PigCastleDefence.Weapons
         public override void Attack()
         {
             // TODO: Do right pig cost
-            if (_manaUser != null && _spawnTimer >= _spawnDelay && _manaUser.IsCanCastSpell(10))
+            if (_manaUser != null && _spawnTimer >= _spawnDelay && _manaUser.IsCanCastSpell(10) && EnemiesManager.Instance.IsEnemiesOnTheMap())
             {
                 _manaUser.UseMana(10);
-                Instantiate(_magicPigPrefab, transform.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)), Quaternion.identity);
+                Pig pig = Instantiate(_magicPigPrefab, transform.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)), Quaternion.identity);
+                pig.Appear();
                 _spawnTimer = 0;
             }
         }

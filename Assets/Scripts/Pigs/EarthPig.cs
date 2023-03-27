@@ -21,7 +21,7 @@ namespace PigCastleDefence
             StunTarget();
         }
 
-        protected override IEnumerator MoveCoroutine()
+        protected override IEnumerator MoveToTarget()
         {
             _isBurrowing = true;
 
@@ -32,7 +32,7 @@ namespace PigCastleDefence
             //_target = FindClosestTarget();
 
             // Move underground towards target
-            Vector3 targetPosition = _target.position;
+            Vector3 targetPosition = _target.transform.position;
             targetPosition.y = transform.position.y; // Keep same Y position as the pig
             transform.DOMove(targetPosition, _burrowDuration).SetEase(Ease.Linear);
 

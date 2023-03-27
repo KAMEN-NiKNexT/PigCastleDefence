@@ -2,10 +2,11 @@ using PigCastleDefence.Enemy;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Kamen;
 
 namespace PigCastleDefence
 {
-    public class EnemiesManager : MonoBehaviour
+    public class EnemiesManager : SingletonComponent<EnemiesManager>
     {
         #region Variables
 
@@ -50,6 +51,8 @@ namespace PigCastleDefence
             return spawnPosition;
         }
         private void RemoveEnemy(Unit enemy) => _enemies.Remove(enemy);
+        public Unit GetClosestEnemy(Vector3 position) => _enemies.FindClosest(position);
+        public bool IsEnemiesOnTheMap() => _enemies.Count > 0;
 
         #endregion
     }

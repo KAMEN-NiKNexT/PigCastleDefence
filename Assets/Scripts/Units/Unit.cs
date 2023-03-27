@@ -16,10 +16,6 @@ namespace PigCastleDefence
         [SerializeField] protected float _standardArmor;
         protected float _currentArmor;
 
-        [Header("Attack Settigns")]
-        [SerializeField] protected float _standardDamage;
-        protected float _currentDamage;
-
         [Header("Important Settings")]
         protected bool _isCanBeControlled;
         public Action<Unit> OnUnitDied;
@@ -32,8 +28,6 @@ namespace PigCastleDefence
         public float CurrentHealth { get => _currentHealth; }
         public float StandardArmor { get => _standardArmor; }
         public float CurrentArmor { get => _currentArmor; }
-        public float StandardDamage { get => _standardDamage; }
-        public float CurrentDamage { get => _currentDamage; }
 
         #endregion
 
@@ -42,12 +36,8 @@ namespace PigCastleDefence
         public void Birth()
         {
             // TODO: Implement birth logic here.
-            StartCoroutine(f());
-        }
-        private IEnumerator f()
-        {
-            yield return new WaitForSeconds(7);
-            TakeDamage(1000);
+            _currentHealth = _maxHealth;
+            _currentArmor = _standardArmor;
         }
         public virtual void TakeDamage(float damage)
         {
