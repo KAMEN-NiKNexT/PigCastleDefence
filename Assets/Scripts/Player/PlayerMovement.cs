@@ -22,7 +22,7 @@ namespace PigCastleDefence.Player
 
         public void MoveCharacter(Vector3 moveDirection)
         {
-            moveDirection = moveDirection * _moveSpeed;
+            moveDirection *= _moveSpeed;
             moveDirection.y = MyGravity.Instance.GetGravityHandling(_characterController.isGrounded);
             _characterController.Move(moveDirection * Time.deltaTime);
         }

@@ -42,6 +42,7 @@ namespace PigCastleDefence
 
         private Transform FindClosestTarget()
         {
+            //TODO: fix this
             KdTree<Transform> enemy = new KdTree<Transform>();
             Transform target = enemy.FindClosest(transform.position);
             return target;

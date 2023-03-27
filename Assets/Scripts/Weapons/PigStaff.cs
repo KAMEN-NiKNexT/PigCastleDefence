@@ -1,12 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace PigCastleDefence.Player
+namespace PigCastleDefence.Weapons
 {
-    public class PlayerCombat : MonoBehaviour
+    public class PigStaff : Weapon
     {
         #region Variables
 
-        [Header("Variables")]
+        [Header("Pig Staff Settings")]
         [SerializeField] private Pig _magicPigPrefab;
         [SerializeField] private float _pigSpawnDistance = 1f;
         [SerializeField] private float _spawnDelay;
@@ -34,17 +36,18 @@ namespace PigCastleDefence.Player
 
         #region Control Methods
 
-        public void SpawnPig()
+        public override void Attack()
         {
             // TODO: Do right pig cost
-            if (_spawnTimer >= _spawnDelay && _manaUser.IsCanCastSpell(10))
+            if (_manaUser != null && _spawnTimer >= _spawnDelay && _manaUser.IsCanCastSpell(10))
             {
                 _manaUser.UseMana(10);
-                Instantiate(_magicPigPrefab, transform.position + new Vector3(Random.Range(-1f,1f), 0, Random.Range(-1f, 1f)), Quaternion.identity);
+                Instantiate(_magicPigPrefab, transform.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)), Quaternion.identity);
                 _spawnTimer = 0;
             }
         }
 
         #endregion
+
     }
 }

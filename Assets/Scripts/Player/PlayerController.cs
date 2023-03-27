@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Kamen.Joystick;
+using PigCastleDefence.Weapons;
 
 namespace PigCastleDefence.Player
 {
-    [RequireComponent(typeof(PlayerMovement), typeof(PlayerCombat))]
+    [RequireComponent(typeof(PlayerMovement))]
     public class PlayerController : MonoBehaviour
     {
         #region Variables
@@ -13,7 +14,7 @@ namespace PigCastleDefence.Player
         [Header("Variables")]
         [SerializeField] private Joystick _joystick;
         [SerializeField] private PlayerMovement _playerMovement;
-        [SerializeField] private PlayerCombat _playerCombat;
+        [SerializeField] private Weapon _weapon;
 
         private Vector3 _joystickValue;
 
@@ -32,7 +33,7 @@ namespace PigCastleDefence.Player
             }
             else
             {
-                _playerCombat.SpawnPig();
+                _weapon.Attack();
             }
         }
 

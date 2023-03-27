@@ -1,3 +1,4 @@
+using PigCastleDefence.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -103,6 +104,48 @@ public class KdTree<T> : IEnumerable<T>, IEnumerable where T : Component
         }
         foreach (var node in list)
             _add(node);
+    }
+
+    public bool Remove(T item)
+    {
+        // Find the node that contains the item to remove
+        var nodeToRemove = FindNode(item);
+        if (nodeToRemove == null)
+        {
+            return false;
+        }
+
+        // Remove the node from the list of nodes in the tree
+        var nodes = new List<KdNode>(_getNodes());
+        nodes.Remove(nodeToRemove);
+        Clear();
+        foreach (var node in nodes)
+        {
+            node._oldRef = null;
+            node.next = null;
+        }
+
+        // Rebuild the tree from the remaining nodes
+        foreach (var node in nodes)
+        {
+            _add(node);
+        }
+
+        return true;
+    }
+
+    private KdNode FindNode(T item)
+    {
+        var current = _root;
+        while (current != null)
+        {
+            if (current.component == item)
+            {
+                return current;
+            }
+            current = current.next;
+        }
+        return null;
     }
 
     /// <summary>
