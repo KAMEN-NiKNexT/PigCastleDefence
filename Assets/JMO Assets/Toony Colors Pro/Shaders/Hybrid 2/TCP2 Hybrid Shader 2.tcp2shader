@@ -290,7 +290,7 @@ Shader "Toony Colors Pro 2/Hybrid Shader 2"
 			// URP 10:
 			#pragma multi_compile _ _SCREEN_SPACE_OCCLUSION    /*** OPTION: "SSAO (URP 10+)" ***/
 /*** END URP_VERSION ***/
-/*** URP_VERSION >= 12 ***/
+/*** URP_VERSION > 12 ***/
 			// URP 12:
 			#pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3    /*** OPTION: "Decals (URP 12+)" ***/
 			#pragma multi_compile_fragment _ _LIGHT_LAYERS    /*** OPTION: "Light Layers (URP 12+)" ***/

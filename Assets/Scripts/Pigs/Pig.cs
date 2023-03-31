@@ -41,23 +41,27 @@ namespace PigCastleDefence
             // TODO: Good appear method
             //transform.localScale = Vector3.zero;
             //transform.DOScale(Vector3.one, _animationSettings.AppearDuration).SetEase(_animationSettings.AppearEase);
-            StartCoroutine(MoveToTarget());
+            StartCoroutine(WaitToEndAppear());
         }
 
+        protected virtual IEnumerator WaitToEndAppear()
+        {
+            yield return new WaitForSeconds(_animationSettings.AppearDuration);
+            StartCoroutine(MoveToTarget());
+        }
         protected virtual IEnumerator MoveToTarget()
         {
             _target = EnemiesManager.Instance.GetClosestEnemy(transform.position);
-            yield return new WaitForSeconds(_animationSettings.AppearDuration);
-
             while (_target != null && Vector3.Distance(transform.position, _target.transform.position) > _attackRange)
             {
                 _agent.SetDestination(_target.transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, _agent.transform.rotation, _rotationSpeed * Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward, _moveSpeed * Time.deltaTime);
                 yield return null;
             }
 
             if (_target != null) Attack();
+            else if (_target == null && EnemiesManager.Instance.IsEnemiesOnTheMap()) StartCoroutine(MoveToTarget());
             else Destroy();
         }
         protected virtual void Attack()
