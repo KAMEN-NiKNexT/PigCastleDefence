@@ -11,6 +11,7 @@ namespace Kamen.Joystick
         #region Variables
 
         [Header("Components")]
+        [SerializeField] private Camera _camera;
         [SerializeField] private Image _joystickArea;
         [SerializeField] private Image _joystickBackground;
         [SerializeField] private Image _joystickHandle;
@@ -41,7 +42,7 @@ namespace Kamen.Joystick
         }
         public void OnDrag(PointerEventData eventData)
         {
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickBackground.rectTransform, eventData.position, Camera.main, out Vector2 joystickPosition))
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickBackground.rectTransform, eventData.position, _camera, out Vector2 joystickPosition))
             {
                 _inputVector = new Vector2(joystickPosition.x * 2 / _joystickBackground.rectTransform.sizeDelta.x, joystickPosition.y * 2 / _joystickBackground.rectTransform.sizeDelta.y);
                 _inputVector = _inputVector.magnitude > 1f ? _inputVector.normalized : _inputVector;
@@ -51,7 +52,7 @@ namespace Kamen.Joystick
         public void OnPointerDown(PointerEventData eventData)
         {
             Switch();
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickArea.rectTransform, eventData.position, Camera.main, out Vector2 joystickBackgroundPosition))
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickArea.rectTransform, eventData.position, _camera, out Vector2 joystickBackgroundPosition))
             {
                 _joystickBackground.rectTransform.anchoredPosition = joystickBackgroundPosition;
             }

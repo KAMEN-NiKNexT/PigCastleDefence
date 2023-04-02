@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 namespace PigCastleDefence
 {
@@ -41,6 +42,8 @@ namespace PigCastleDefence
             // TODO: Good appear method
             //transform.localScale = Vector3.zero;
             //transform.DOScale(Vector3.one, _animationSettings.AppearDuration).SetEase(_animationSettings.AppearEase);
+            _agent.speed = _moveSpeed;
+            _agent.angularSpeed = _rotationSpeed;
             StartCoroutine(WaitToEndAppear());
         }
 
@@ -54,9 +57,20 @@ namespace PigCastleDefence
             _target = EnemiesManager.Instance.GetClosestEnemy(transform.position);
             while (_target != null && Vector3.Distance(transform.position, _target.transform.position) > _attackRange)
             {
+                PickRandomDestination();
+                //_agent.SetDestination(_target.transform.position);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, _agent.transform.rotation, _rotationSpeed * Time.deltaTime);
+                //transform.position += transform.rotation * Vector3.forward * _moveSpeed * Time.deltaTime;
+
                 _agent.SetDestination(_target.transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, _agent.transform.rotation, _rotationSpeed * Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward, _moveSpeed * Time.deltaTime);
+
+                if (_agent.velocity.magnitude > 0.1f)
+                {
+                    float targetAngle = Mathf.Atan2(_agent.velocity.x, _agent.velocity.z) * Mathf.Rad2Deg;
+                    Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+                    transform.rotation = targetRotation;
+                }
+
                 yield return null;
             }
 
@@ -71,6 +85,25 @@ namespace PigCastleDefence
             _target.GetComponent<Rigidbody>().AddForce(pushDirection * _pushForce, ForceMode.Impulse);
             if (_target.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(_damage);
             Destroy();
+        }
+        void PickRandomDestination()
+        {
+            // generate a random point within a certain radius around the pig's current position
+            Vector3 randomDirection = Random.insideUnitSphere * 10f;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomDirection, out hit, 10f, NavMesh.AllAreas);
+            Vector3 targetPosition = hit.position;
+
+            // set the destination for the NavMeshAgent to the random point
+            _agent.SetDestination(targetPosition);
+        }
+        private void te2()
+        {
+            if (_target != null)
+            {
+                
+            }
         }
         private void Destroy()
         {
