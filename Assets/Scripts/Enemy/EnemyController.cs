@@ -13,6 +13,7 @@ namespace PigCastleDefence.Enemy
         #region Variables
 
         [Header("Variables")]
+        [SerializeField] private Unit _unit;
         [SerializeField] private EnemyMovement _enemyMovement;
         [SerializeField] private Weapon _weapon;
 
@@ -22,6 +23,8 @@ namespace PigCastleDefence.Enemy
 
         private void FixedUpdate()
         {
+            if (!_unit.IsCanBeControlled) return;
+
             if (!_enemyMovement.MoveToTarget())
             {
                 _weapon.Attack();

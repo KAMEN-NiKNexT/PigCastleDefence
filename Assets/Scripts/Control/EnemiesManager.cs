@@ -18,7 +18,7 @@ namespace PigCastleDefence
         [SerializeField] private Transform _spawnPoint;
 
         private readonly KdTree<Unit> _enemies = new KdTree<Unit>();
-        [SerializeField] private GameObject _player;
+        public GameObject _player;
         //private List<Unit>
 
         #endregion

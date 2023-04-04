@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 1493980047425167515}
   - component: {fileID: 1493980047425167514}
   - component: {fileID: 1493980047425167520}
-  - component: {fileID: 1493980047425167513}
+  - component: {fileID: 2827062732299506876}
   - component: {fileID: 521874320768542540}
+  - component: {fileID: 1493980047425167513}
   m_Layer: 0
   m_Name: Zombi
   m_TagString: Untagged
@@ -38,6 +39,7 @@ Transform:
   m_Children:
   - {fileID: 1493980049030859095}
   - {fileID: 9151405011431498209}
+  - {fileID: 6343331817267927929}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc7eb4d930ba849bc3711e1996ac5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unit: {fileID: 521874320768542540}
   _enemyMovement: {fileID: 1493980047425167520}
   _weapon: {fileID: 1493980047425167513}
 --- !u!114 &1493980047425167520
@@ -150,8 +153,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 1493980047425167515}
   _moveSpeed: 2
   _rotationSpeed: 15
-  _maxTargetDistance: 0.4
---- !u!114 &1493980047425167513
+  _maxTargetDistance: 0.6
+--- !u!114 &2827062732299506876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,11 +163,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493980047425167521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d8fc98af2eee3d4e96434b2b0f5b1b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e74c65e1c92f69d44abde6f88425ae6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
-  _attackSpeed: 1.5
+  _owner: {fileID: 521874320768542540}
+  _lootTable:
+  - _item: {fileID: 4748659839787218101, guid: 4f94e92b847155541b0306a61a19b9b4, type: 3}
+    _minCount: 7
+    _maxCount: 12
+    _dropChance: 100
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _dropSettings: {fileID: 11400000, guid: 790830b9d59a92143a9ed83ad202ddc3, type: 2}
 --- !u!114 &521874320768542540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +193,24 @@ MonoBehaviour:
   _igniteMultiplier: 2
   _burningMultiplier: 1.5
   _burningInterval: 1
+--- !u!114 &1493980047425167513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493980047425167521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8fc98af2eee3d4e96434b2b0f5b1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _attackSpeed: 1.5
+  _attackRange: 1
+  _targeyMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1493980049030859088
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +265,56 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
+--- !u!1 &2746424181313577672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6343331817267927929}
+  - component: {fileID: 7128769051241285349}
+  m_Layer: 0
+  m_Name: Fists
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6343331817267927929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746424181313577672}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.13, y: 0.16, z: 0.85}
+  m_LocalScale: {x: 2.5, y: 1, z: 2.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1493980047425167524}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7128769051241285349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746424181313577672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8fc98af2eee3d4e96434b2b0f5b1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _attackSpeed: 1
+  _attackRange: 0
+  _targeyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &5599214409215623530
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using PigCastleDefence.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace PigCastleDefence.Weapons
 
         [Header("Fists Settigns")]
         [SerializeField] private float _attackSpeed;
+        [SerializeField] private float _attackRange;
+        [SerializeField] private LayerMask _targeyMask;
         [SerializeField] private IUndead _undead;
         private float _attackTimer;
 
@@ -32,15 +35,17 @@ namespace PigCastleDefence.Weapons
 
         public override void Attack()
         {
-            // TODO: Do right attack for fists
             if (_attackTimer >= _attackSpeed)
             {
-                //_manaUser.UseMana(10);
-                //Instantiate(_magicPigPrefab, transform.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)), Quaternion.identity);
-                //_spawnTimer = 0;
-                if (_undead != null)
+                if (Physics.Raycast(transform.position, transform.rotation * Vector3.forward, out RaycastHit hit, _attackRange, _targeyMask))
                 {
-
+                    Unit unit = hit.transform.GetComponent<Unit>();
+                    unit.TakeDamage(_damage);
+                    _attackTimer = 0;
+                    if (_undead != null)
+                    {
+                        //TODO: Slow effect
+                    }
                 }
             }
         }

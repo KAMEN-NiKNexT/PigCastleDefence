@@ -22,6 +22,11 @@ namespace PigCastleDefence
 
         #region Unity Methods
 
+        private void Start()
+        {
+            Birth();
+        }
+
         private void Update()
         {
             RestoreMana(_manaRegenerationAmount);
@@ -54,14 +59,14 @@ namespace PigCastleDefence
         public void Stun(float stunDuration)
         {
             // TODO: Get stun animation
-            _isCanBeControlled = false;
+            IsCanBeControlled = false;
             StartCoroutine(WaitToEndStun(stunDuration));
         }
         public IEnumerator WaitToEndStun(float stunDuration)
         {
             // TODO: Stunning animation
             yield return new WaitForSeconds(stunDuration);
-            _isCanBeControlled = true;
+            IsCanBeControlled = true;
         }
 
         #endregion

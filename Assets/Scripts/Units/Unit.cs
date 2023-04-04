@@ -17,9 +17,9 @@ namespace PigCastleDefence
         protected float _currentArmor;
 
         [Header("Important Settings")]
-        protected bool _isCanBeControlled;
         public Action<float, float> OnHealthChanged;
         public Action<Unit> OnUnitDied;
+        public bool IsCanBeControlled { get; protected set; }
 
         #endregion
 
@@ -37,6 +37,7 @@ namespace PigCastleDefence
         public void Birth()
         {
             // TODO: Implement birth logic here.
+            IsCanBeControlled = true;
             SetHealth();
             SetArmor();
             OnHealthChanged?.Invoke(_maxHealth, _currentHealth);
@@ -48,10 +49,22 @@ namespace PigCastleDefence
             OnHealthChanged?.Invoke(_maxHealth, _currentHealth);
             if (_currentHealth <= 0) Die();
         }
+        public virtual void Heal(int newHealth)
+        {
+            _currentHealth = Mathf.Min(_maxHealth, _currentHealth + newHealth);
+            OnHealthChanged?.Invoke(_maxHealth, _currentHealth);
+        }
         protected void Die()
         {
             // TODO: Implement death logic here.
+            IsCanBeControlled = false;
             OnUnitDied?.Invoke(this);
+            StartCoroutine(WaitToDestroy());
+        }
+        private IEnumerator WaitToDestroy()
+        {
+            //TODO: Fix this method
+            yield return new WaitForSeconds(2);
             Destroy(gameObject);
         }
 
