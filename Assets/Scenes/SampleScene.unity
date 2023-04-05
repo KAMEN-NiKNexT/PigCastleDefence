@@ -337,6 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zombiePrefab: {fileID: 521874320768542540, guid: 05eb88367b8c849499f03d98df43f18e, type: 3}
   _barbarianPrefab: {fileID: 4265474383115142492, guid: 771ba3ca626acde4c9e88534ac715c25, type: 3}
+  _phantomArcherPrefab: {fileID: 628543070733518247, guid: 50bf0a0b623b4734b8b59490773ae97f, type: 3}
   _zombieAmout: 20
   _baribarianAmout: 3
   _spawnRadius: 5

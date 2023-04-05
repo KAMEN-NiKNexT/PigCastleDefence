@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ToonyColorsPro.ShaderGenerator.Enums;
 
 namespace PigCastleDefence
 {
     public class Arrow : MonoBehaviour
     {
+        //TODO: FIX whole this script
         #region Variables
 
         [SerializeField] private float _damage;
@@ -61,7 +63,11 @@ namespace PigCastleDefence
 
         private void OnTriggerEnter(Collider other)
         {
-            Unit unit = other.GetComponent<Unit>();
+            //Destroy(gameObject);
+        }
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            Unit unit = hit.gameObject.GetComponent<Unit>();
             if (unit != null)
             {
                 unit.TakeDamage(_damage);

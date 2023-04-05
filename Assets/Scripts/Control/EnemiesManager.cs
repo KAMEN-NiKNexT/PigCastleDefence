@@ -13,6 +13,7 @@ namespace PigCastleDefence
         [Header("Spawn settings")]
         [SerializeField] private Unit _zombiePrefab;
         [SerializeField] private Unit _barbarianPrefab;
+        [SerializeField] private Unit _phantomArcherPrefab;
         [SerializeField] private int _zombieAmout;
         [SerializeField] private int _baribarianAmout;
         [SerializeField] private float _spawnRadius;
@@ -29,8 +30,9 @@ namespace PigCastleDefence
 
         private void Start()
         {
-            StartCoroutine(SpawnEnemies(_zombiePrefab, _zombieAmout));
-            StartCoroutine(SpawnEnemies(_barbarianPrefab, _baribarianAmout));
+            //StartCoroutine(SpawnEnemies(_zombiePrefab, _zombieAmout));
+            //StartCoroutine(SpawnEnemies(_barbarianPrefab, _baribarianAmout));
+            StartCoroutine(SpawnEnemies(_phantomArcherPrefab, 10));
         }
         private IEnumerator SpawnEnemies(Unit unit, int amount)
         {

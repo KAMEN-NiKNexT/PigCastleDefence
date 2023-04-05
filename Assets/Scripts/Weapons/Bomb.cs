@@ -1,10 +1,7 @@
-using PigCastleDefence.Weapons;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
-namespace PigCastleDefence
+namespace PigCastleDefence.Weapons
 {
     public class Bomb : Weapon
     {
