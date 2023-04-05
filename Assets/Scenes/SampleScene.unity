@@ -282,7 +282,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96392035}
-  m_LocalRotation: {x: 0.53352094, y: -0.052514456, z: 0.03321579, w: 0.8435013}
+  m_LocalRotation: {x: 0.533521, y: -0.052514534, z: 0.033215843, w: 0.84350127}
   m_LocalPosition: {x: -6.2564487, y: 18.58, z: -4.613579}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -335,8 +335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac44eab20dcf70e4fb4746ae70980cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 521874320768542540, guid: 05eb88367b8c849499f03d98df43f18e, type: 3}
-  _enemiesAmout: 5000
+  _zombiePrefab: {fileID: 521874320768542540, guid: 05eb88367b8c849499f03d98df43f18e, type: 3}
+  _barbarianPrefab: {fileID: 4265474383115142492, guid: 771ba3ca626acde4c9e88534ac715c25, type: 3}
+  _zombieAmout: 20
+  _baribarianAmout: 3
   _spawnRadius: 5
   _spawnDelay: 1.8
   _spawnPoint: {fileID: 1977382793}
@@ -1798,7 +1800,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.53352094, y: -0.052514456, z: 0.03321579, w: 0.8435013}
+  m_LocalRotation: {x: 0.533521, y: -0.052514534, z: 0.033215843, w: 0.84350127}
   m_LocalPosition: {x: -6.2564487, y: 18.58, z: -4.613579}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

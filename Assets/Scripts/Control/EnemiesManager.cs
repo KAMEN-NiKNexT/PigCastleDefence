@@ -11,8 +11,10 @@ namespace PigCastleDefence
         #region Variables
 
         [Header("Spawn settings")]
-        [SerializeField] private Unit _enemyPrefab;
-        [SerializeField] private int _enemiesAmout;
+        [SerializeField] private Unit _zombiePrefab;
+        [SerializeField] private Unit _barbarianPrefab;
+        [SerializeField] private int _zombieAmout;
+        [SerializeField] private int _baribarianAmout;
         [SerializeField] private float _spawnRadius;
         [SerializeField] private float _spawnDelay;
         [SerializeField] private Transform _spawnPoint;
@@ -27,14 +29,15 @@ namespace PigCastleDefence
 
         private void Start()
         {
-            StartCoroutine(SpawnEnemies());
+            StartCoroutine(SpawnEnemies(_zombiePrefab, _zombieAmout));
+            StartCoroutine(SpawnEnemies(_barbarianPrefab, _baribarianAmout));
         }
-        private IEnumerator SpawnEnemies()
+        private IEnumerator SpawnEnemies(Unit unit, int amount)
         {
-            for (int i = 0; i < _enemiesAmout; i++)
+            for (int i = 0; i < amount; i++)
             {
                 Vector3 spawnPosition = GetRandomSpawnPosition();
-                Unit enemy = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+                Unit enemy = Instantiate(unit, spawnPosition, Quaternion.identity);
                 enemy.Birth();
                 enemy.OnUnitDied += RemoveEnemy;
                 enemy.GetComponent<EnemyMovement>().SetTarget(_player.transform);

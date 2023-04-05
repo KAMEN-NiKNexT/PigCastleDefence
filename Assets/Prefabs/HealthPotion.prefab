@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4748659839787218098}
   - component: {fileID: 4748659839787218099}
   - component: {fileID: 4748659839787218096}
-  - component: {fileID: 4748659839787218101}
+  - component: {fileID: 2500447760343184727}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: HealthPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60ad70d2c2165ae4081b6f1a082cd68e, type: 2}
+  - {fileID: 2100000, guid: b7872d842dc4c194dace8c34885f57c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4748659839787218101
+--- !u!114 &2500447760343184727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4748659839787218094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ab0e4aaddfaba43900b07cd43b4de7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a9167611213f444ca79f166b91c181f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 1
+  _healthRestoreAmount: 50

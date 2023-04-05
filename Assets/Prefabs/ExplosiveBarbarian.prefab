@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1196525051405435108
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4301969741775969661}
-  - component: {fileID: 3647266489899409563}
-  m_Layer: 0
-  m_Name: Fists
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4301969741775969661
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196525051405435108}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13000011, y: 0.16, z: 0.8499998}
-  m_LocalScale: {x: 2.5, y: 1, z: 2.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1493980047425167524}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3647266489899409563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196525051405435108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d8fc98af2eee3d4e96434b2b0f5b1b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 10
-  _attackSpeed: 1
-  _attackRange: 0
-  _targeyMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1493980047425167521
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,9 +16,9 @@ GameObject:
   - component: {fileID: 1493980047425167514}
   - component: {fileID: 1493980047425167520}
   - component: {fileID: 2827062732299506876}
-  - component: {fileID: 521874320768542540}
+  - component: {fileID: 4265474383115142492}
   m_Layer: 0
-  m_Name: Zombi
+  m_Name: ExplosiveBarbarian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +38,7 @@ Transform:
   m_Children:
   - {fileID: 1493980049030859095}
   - {fileID: 9151405011431498209}
-  - {fileID: 4301969741775969661}
+  - {fileID: 652046235257569082}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d991fa46dc154d241b4f5891e2c69622, type: 2}
+  - {fileID: 2100000, guid: 007f86f1f52d55946af6e5bf2bac5f8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -183,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc7eb4d930ba849bc3711e1996ac5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unit: {fileID: 521874320768542540}
+  _unit: {fileID: 4265474383115142492}
   _enemyMovement: {fileID: 1493980047425167520}
-  _weapon: {fileID: 3647266489899409563}
+  _weapon: {fileID: 921108170761017530}
 --- !u!114 &1493980047425167520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 1493980049030859094}
   _rigidbody: {fileID: 1493980047425167515}
-  _moveSpeed: 2
-  _rotationSpeed: 15
+  _moveSpeed: 4
+  _rotationSpeed: 30
   _maxTargetDistance: 0.6
 --- !u!114 &2827062732299506876
 MonoBehaviour:
@@ -215,17 +165,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74c65e1c92f69d44abde6f88425ae6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 521874320768542540}
+  _owner: {fileID: 4265474383115142492}
   _lootTable:
   - _item: {fileID: 4748659839787218101, guid: 4f94e92b847155541b0306a61a19b9b4, type: 3}
-    _minCount: 7
-    _maxCount: 12
+    _minCount: 14
+    _maxCount: 25
     _dropChance: 100
+  - _item: {fileID: 2500447760343184727, guid: fd155223870cdad46a7c9205fa648298, type: 3}
+    _minCount: 1
+    _maxCount: 2
+    _dropChance: 30
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
   _dropSettings: {fileID: 11400000, guid: 790830b9d59a92143a9ed83ad202ddc3, type: 2}
---- !u!114 &521874320768542540
+--- !u!114 &4265474383115142492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,13 +188,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493980047425167521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486dbc4adead29048bd7a927a90388c1, type: 3}
+  m_Script: {fileID: 11500000, guid: db640937d21737945ba445b11f08de85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _standardArmor: 4
-  _igniteMultiplier: 2
-  _burningMultiplier: 1.5
+  _maxHealth: 300
+  _standardArmor: 8
+  _igniteMultiplier: 1
+  _burningMultiplier: 1
   _burningInterval: 1
 --- !u!1 &1493980049030859088
 GameObject:
@@ -296,6 +250,58 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
+--- !u!1 &3973262572652553407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652046235257569082}
+  - component: {fileID: 921108170761017530}
+  m_Layer: 0
+  m_Name: Bomb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &652046235257569082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973262572652553407}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1493980047425167524}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &921108170761017530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973262572652553407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca11e9c78391314aa59a762647b282b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 15
+  _timeBeforeExplosion: 15
+  _minExplosionRadius: 0.2
+  _maxExplosionRadius: 2
+  _minExplosionDamage: 15
+  _maxExplosionDamage: 90
+  _igniteDamage: 4
+  _igniteDuration: 5
 --- !u!1001 &5599214409215623530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 3653604064468492426, guid: 1685f48e7417c2648a647f542bad9e3d, type: 3}
       propertyPath: _owner
       value: 
-      objectReference: {fileID: 521874320768542540}
+      objectReference: {fileID: 4265474383115142492}
     - target: {fileID: 3653604064468492427, guid: 1685f48e7417c2648a647f542bad9e3d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

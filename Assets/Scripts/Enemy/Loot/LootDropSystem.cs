@@ -1,10 +1,6 @@
 using DG.Tweening;
-using PigCastleDefence.Player;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 namespace PigCastleDefence
 {
@@ -75,6 +71,7 @@ namespace PigCastleDefence
         }
         private IEnumerator DropItemCoroutine(Item item)
         {
+            //TODO: Fix "EnemiesManager.Instance._player", i need impliment new best variant
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _searchGroundRange, _groundMask))
             {
                 Vector3 dropPosition = new Vector3(transform.position.x + Random.Range(-_dropSettings.DropDistance, _dropSettings.DropDistance), 
@@ -86,6 +83,7 @@ namespace PigCastleDefence
             yield return new WaitForSeconds(_dropSettings.DropDuration + _dropSettings.DelayBeforeMoveToPlayer);
             item.transform.DOMove(EnemiesManager.Instance._player.transform.position, _dropSettings.MoveToPlayerDuration).SetEase(_dropSettings.MoveToPlayerEase);
             yield return new WaitForSeconds(_dropSettings.MoveToPlayerDuration);
+            item.SetOwner(EnemiesManager.Instance._player.GetComponent<Unit>());
             item.Use();
             Destroy(item.gameObject);
         }
