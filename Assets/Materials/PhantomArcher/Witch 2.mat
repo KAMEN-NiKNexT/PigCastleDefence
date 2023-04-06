@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall 2
+  m_Name: Witch 2
   m_Shader: {fileID: -6465566751694194690, guid: edd7abf643fa4bc4e8561d4c280c97cf, type: 3}
   m_ValidKeywords:
   - TCP2_RAMP_BANDS_CRISP
@@ -122,7 +122,7 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectIntensityOutline: 1
@@ -153,14 +153,14 @@ Material:
     - _OutlineWidth: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
-    - _RampBands: 15
+    - _RampBands: 3
     - _RampBandsSmoothing: 0.1
     - _RampOffset: 0
     - _RampScale: 1
     - _RampSmooth: 0.1
     - _RampSmoothOtherLights: 0.5
-    - _RampSmoothing: 1
-    - _RampThreshold: 0.7
+    - _RampSmoothing: 0.534
+    - _RampThreshold: 0.72
     - _RampThresholdOtherLights: 0.5
     - _RampType: 3
     - _ReceiveShadows: 1
@@ -168,8 +168,8 @@ Material:
     - _ReflectionMapType: 0
     - _ReflectionSmoothness: 0.5
     - _RenderingMode: 0
-    - _RimMax: 1
-    - _RimMin: 0.5
+    - _RimMax: 2
+    - _RimMin: 2
     - _ShadowColorLightAtten: 1
     - _Shadow_HSV_H: 0
     - _Shadow_HSV_S: 0
@@ -203,7 +203,7 @@ Material:
     - _ZWrite: 1
     - __dummy__: 0
     m_Colors:
-    - _BaseColor: {r: 0.9622642, g: 0.35857958, b: 0.37057352, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 0.6273013, b: 0.53301877, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
@@ -211,7 +211,7 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.6}
-    - _SColor: {r: 0.195, g: 0.195, b: 0.195, a: 1}
+    - _SColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
   m_BuildTextureStacks: []
