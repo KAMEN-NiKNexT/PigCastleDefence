@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace PigCastleDefence.Player
 
         [Header("Movement Variables")]
         [SerializeField] private CharacterController _characterController;
+        public Action OnMove;
 
         #endregion
 
@@ -22,6 +24,7 @@ namespace PigCastleDefence.Player
 
         public void MoveCharacter(Vector3 moveDirection)
         {
+            OnMove?.Invoke();
             moveDirection *= _moveSpeed;
             moveDirection.y = MyGravity.Instance.GetGravityHandling(_characterController.isGrounded);
             _characterController.Move(moveDirection * Time.deltaTime);

@@ -1,5 +1,7 @@
 using UnityEngine.AI;
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
 
 namespace PigCastleDefence.Enemy
 {
@@ -20,6 +22,7 @@ namespace PigCastleDefence.Enemy
         private Transform _target;
         private Vector3 _targetDirection;
         private float _distanceFromTarget;
+        public Action OnMove;
 
         #endregion
 
@@ -30,6 +33,7 @@ namespace PigCastleDefence.Enemy
             _distanceFromTarget = Vector3.Distance(_target.transform.position, transform.position);
             if (_distanceFromTarget > _maxTargetDistance)
             {
+                OnMove?.Invoke();
                 _agent.enabled = true;
                 _agent.SetDestination(_target.transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, _agent.transform.rotation, _rotationSpeed / Time.deltaTime);

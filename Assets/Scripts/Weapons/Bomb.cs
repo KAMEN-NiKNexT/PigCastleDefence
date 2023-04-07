@@ -25,7 +25,7 @@ namespace PigCastleDefence.Weapons
 
         #region Unity Methods
 
-        private void Start()
+        protected override void Start()
         {
             Initialize();
         }

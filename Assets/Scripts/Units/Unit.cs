@@ -74,7 +74,6 @@ namespace PigCastleDefence
 
         public void SetHealth() => _currentHealth = _maxHealth;
         public void SetArmor() => _currentArmor = _standardArmor;
-
         #endregion
     }
 }

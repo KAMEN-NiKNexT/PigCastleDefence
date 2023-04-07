@@ -27,7 +27,7 @@ namespace PigCastleDefence.Enemy
 
             if (!_enemyMovement.MoveToTarget())
             {
-                _weapon.Attack();
+                _weapon.Attack();   
             }
         }
 

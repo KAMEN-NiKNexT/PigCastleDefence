@@ -1,6 +1,7 @@
 using PigCastleDefence.Player;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace PigCastleDefence.Weapons
@@ -10,24 +11,9 @@ namespace PigCastleDefence.Weapons
         #region Variables
 
         [Header("Fists Settigns")]
-        [SerializeField] private float _attackSpeed;
         [SerializeField] private float _attackRange;
         [SerializeField] private LayerMask _targeyMask;
         [SerializeField] private IUndead _undead;
-        private float _attackTimer;
-
-        #endregion
-
-        #region Unity Methods
-
-        private void Start()
-        {
-            _undead = GetComponentInParent<IUndead>();
-        }
-        private void Update()
-        {
-            if (_attackTimer < _attackSpeed) _attackTimer += Time.deltaTime;
-        }
 
         #endregion
 
@@ -37,16 +23,23 @@ namespace PigCastleDefence.Weapons
         {
             if (_attackTimer >= _attackSpeed)
             {
+                base.Attack();
                 if (Physics.Raycast(transform.position, transform.rotation * Vector3.forward, out RaycastHit hit, _attackRange, _targeyMask))
                 {
-                    Unit unit = hit.transform.GetComponent<Unit>();
-                    unit.TakeDamage(_damage);
                     _attackTimer = 0;
-                    if (_undead != null)
-                    {
-                        //TODO: Slow effect
-                    }
+                    StartCoroutine(WaitToHit(hit));
                 }
+            }
+        }
+        private IEnumerator WaitToHit(RaycastHit hit)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Unit unit = hit.transform.GetComponent<Unit>();
+            unit.TakeDamage(_damage);
+            StartCoroutine(UpdateTimer());
+            if (_undead != null)
+            {
+                //TODO: Slow effect
             }
         }
 
