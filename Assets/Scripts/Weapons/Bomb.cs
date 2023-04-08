@@ -15,6 +15,10 @@ namespace PigCastleDefence.Weapons
         [SerializeField] private float _maxExplosionDamage;
         [SerializeField] private float _igniteDamage;
         [SerializeField] private float _igniteDuration;
+        [Space]
+        [SerializeField] private Transform _bombIncreaseModel; //TODO: rename this variable
+        [SerializeField] private Vector3 _minSize;
+        [SerializeField] private Vector3 _maxSize;
 
         [Header("Variables")]
         private float _currentTime;
@@ -45,13 +49,13 @@ namespace PigCastleDefence.Weapons
             while (_currentTime < _timeBeforeExplosion)
             {
                 _currentTime += Time.deltaTime;
+                _bombIncreaseModel.transform.localScale = Vector3.Lerp(_minSize, _maxSize, _currentTime / _timeBeforeExplosion);
                 yield return null;
             }
             _currentTime = _timeBeforeExplosion;
             Explosion(_owner);
         }
-        public override void Attack(){ } //DO nothing
-        private void Explosion(Unit unit)
+        public override void Attack()
         {
             _owner.OnUnitDied -= Explosion;
             _owner.TakeDamage(int.MaxValue);
@@ -67,6 +71,7 @@ namespace PigCastleDefence.Weapons
                 if (collider.TryGetComponent(out IIgnitable igniteEntity)) igniteEntity.Ignite(_igniteDuration, _igniteDamage);
             }
         }
+        private void Explosion(Unit unit) => Attack();
 
         #endregion
     }

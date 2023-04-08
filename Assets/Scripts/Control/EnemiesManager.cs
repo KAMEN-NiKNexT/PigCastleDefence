@@ -30,8 +30,8 @@ namespace PigCastleDefence
 
         private void Start()
         {
-            //StartCoroutine(SpawnEnemies(_zombiePrefab, _zombieAmout));
-            //StartCoroutine(SpawnEnemies(_barbarianPrefab, _baribarianAmout));
+            StartCoroutine(SpawnEnemies(_zombiePrefab, _zombieAmout));
+            StartCoroutine(SpawnEnemies(_barbarianPrefab, _baribarianAmout));
             StartCoroutine(SpawnEnemies(_phantomArcherPrefab, 10));
         }
         private IEnumerator SpawnEnemies(Unit unit, int amount)
