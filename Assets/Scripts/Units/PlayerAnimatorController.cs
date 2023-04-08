@@ -1,9 +1,8 @@
-using PigCastleDefence.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PigCastleDefence
+namespace PigCastleDefence.Player
 {
     public class PlayerAnimatorController : AnimatorController
     {
@@ -32,12 +31,25 @@ namespace PigCastleDefence
 
         private void OnMoveAnimation()
         {
-            if (_animator.GetBool("IsPigSpawn")) _animator.SetBool("IsPigSpawn", false);
+            if (!_animator.GetBool("IsMove"))
+            {
+                _animator.SetBool("IsMove", true);
+                _animator.SetBool("IsPigSpawn", false);
+            }
         }
         protected override void OnAttackAnimation()
         {
-            if (!_animator.GetBool("IsPigSpawn")) _animator.SetBool("IsPigSpawn", true);
-            else _animator.SetTrigger("IsAttack");
+            if (!_animator.GetBool("IsPigSpawn"))
+            {
+                _animator.SetBool("IsPigSpawn", true);
+                _animator.SetBool("IsMove", false);
+                _animator.SetTrigger("IsAttack");
+            }
+            else
+            {
+                _animator.SetTrigger("IsAttack");
+            }
+            //else _animator.SetTrigger("IsAttack");
         }
 
         #endregion

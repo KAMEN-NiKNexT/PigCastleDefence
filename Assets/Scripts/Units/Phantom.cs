@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace PigCastleDefence
         [SerializeField] private float _dodgeTimer;
         [SerializeField] private float dodgeRadius;
         [SerializeField] private GameObject dodgeEffectPrefab;
+        public Action OnDodged;
 
         #endregion
 
@@ -46,14 +48,14 @@ namespace PigCastleDefence
         }
         public override void TakeDamage(float damage)
         {
-            if (Random.Range(1, 101) <= _dodgeChance) Dodge();
+            if (UnityEngine.Random.Range(1, 101) <= _dodgeChance) Dodge();
             else base.TakeDamage(damage);
         }
         public void Dodge()
         {
-            Vector3 dodgePosition = Random.insideUnitSphere * dodgeRadius + transform.position;
+            Vector3 dodgePosition = UnityEngine.Random.insideUnitSphere * dodgeRadius + transform.position;
             dodgePosition.y = transform.position.y;
-
+            OnDodged?.Invoke();
             //TODO: Create good effect
             //Instantiate(dodgeEffectPrefab, transform.position, Quaternion.identity);
             transform.position = dodgePosition;
