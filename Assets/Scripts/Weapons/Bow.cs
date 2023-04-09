@@ -29,11 +29,8 @@ namespace PigCastleDefence
                 base.Attack();
                 GameObject arrowObject = Instantiate(_arrowPrefab, _arrowSpawnPoint.position, Quaternion.identity);
                 Arrow arrow = arrowObject.GetComponent<Arrow>();
-                arrow.SetDamage(_damage);
-                arrow.SetSpeed(_arrowSpeed);
                 Vector3 direction = transform.rotation * Vector3.forward;
-                arrow.SetDirection(direction);
-                arrow.Shoot();
+                arrow.Shoot(direction, _arrowSpeed, _damage);
                 _attackTimer = 0;
                 StartCoroutine(UpdateTimer());
             }

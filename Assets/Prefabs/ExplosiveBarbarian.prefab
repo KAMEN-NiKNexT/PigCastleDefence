@@ -264,6 +264,7 @@ MonoBehaviour:
   _damage: 15
   _attackSpeed: 0
   _timeBeforeExplosion: 15
+  _explosionDelay: 0
   _minExplosionRadius: 0.2
   _maxExplosionRadius: 2
   _minExplosionDamage: 15
@@ -271,8 +272,11 @@ MonoBehaviour:
   _igniteDamage: 4
   _igniteDuration: 5
   _bombIncreaseModel: {fileID: 6410237255315501831}
+  _explosionEffect: {fileID: 130346, guid: c45a9d38b5192564fa9c37fb1d6c9bd6, type: 3}
+  _minExplosionSize: {x: 0.4, y: 0.4, z: 0.4}
+  _maxExplosionSize: {x: 2, y: 2, z: 2}
   _minSize: {x: 1, y: 1, z: 1}
-  _maxSize: {x: 7, y: 7, z: 7}
+  _maxSize: {x: 4, y: 4, z: 4}
 --- !u!1001 &2750864658113320462
 PrefabInstance:
   m_ObjectHideFlags: 0

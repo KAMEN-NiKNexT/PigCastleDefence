@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 1493980049030859094}
   _rigidbody: {fileID: 1493980047425167515}
-  _moveSpeed: 0.8
+  _moveSpeed: 1.5
   _rotationSpeed: 60
   _maxTargetDistance: 0.7
 --- !u!114 &2827062732299506876

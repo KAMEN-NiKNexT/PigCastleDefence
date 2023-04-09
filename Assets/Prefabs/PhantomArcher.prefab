@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f2dff7c19625341bbc4c34d5877bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
+  _damage: 15
   _attackSpeed: 1.5
   _arrowPrefab: {fileID: 4748659839787218094, guid: 9199647c926df5d47a152d8433084a13, type: 3}
   _arrowSpawnPoint: {fileID: 4301969741775969661}

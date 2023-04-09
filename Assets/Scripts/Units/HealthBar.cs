@@ -21,7 +21,7 @@ namespace PigCastleDefence
 
         #region Unity Methods
 
-        private void Start()
+        private void Awake()
         {
             Initialize();
         }
