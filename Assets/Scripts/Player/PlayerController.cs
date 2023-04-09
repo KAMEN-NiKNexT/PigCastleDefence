@@ -7,7 +7,7 @@ using PigCastleDefence.Weapons;
 namespace PigCastleDefence.Player
 {
     [RequireComponent(typeof(PlayerMovement))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IGoodObject
     {
         #region Variables
 

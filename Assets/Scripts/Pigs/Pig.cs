@@ -57,12 +57,9 @@ namespace PigCastleDefence
             _target = EnemiesManager.Instance.GetClosestEnemy(transform.position);
             while (_target != null && Vector3.Distance(transform.position, _target.transform.position) > _attackRange)
             {
-                //PickRandomDestination();
-                //_agent.SetDestination(_target.transform.position);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, _agent.transform.rotation, _rotationSpeed * Time.deltaTime);
-                //transform.position += transform.rotation * Vector3.forward * _moveSpeed * Time.deltaTime;
-
-                _agent.SetDestination(_target.transform.position);
+                Vector3 check = _target.transform.position;
+                check.y = 0.6f;
+                _agent.SetDestination(check);
 
                 if (_agent.velocity.magnitude > 0.1f)
                 {

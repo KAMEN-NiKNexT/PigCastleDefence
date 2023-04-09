@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5146236250015974207}
-  _damage: 25
-  _speed: 5
+  _lifeTime: 7
+  _baseDamage: 5
 --- !u!136 &9032219703705265908
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ namespace PigCastleDefence.Weapons
             {
                 OnAttacked?.Invoke();
                 _manaUser.UseMana(10);
-                Pig pig = Instantiate(_magicPigPrefab, transform.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)), Quaternion.identity);
+                Pig pig = Instantiate(_magicPigPrefab, transform.position + new Vector3(Random.Range(-1f, 1f), 2, Random.Range(-1f, 1f)), Quaternion.identity);
                 pig.Appear();
                 _attackTimer = 0;
                 StartCoroutine(UpdateTimer());
