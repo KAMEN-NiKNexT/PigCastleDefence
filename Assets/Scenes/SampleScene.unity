@@ -300,8 +300,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96392035}
-  m_LocalRotation: {x: 0.53895354, y: 0.0000000527573, z: -0.000000033755832, w: 0.8423355}
-  m_LocalPosition: {x: -7.2564487, y: 14.092, z: -2.613579}
+  m_LocalRotation: {x: 0.54138577, y: -0.00000002893337, z: 0.000000018630583, w: 0.8407743}
+  m_LocalPosition: {x: -7.2564487, y: 12.092, z: -1.613579}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -357,24 +357,17 @@ MonoBehaviour:
   - _unitName: Zombie
     _spawnUnit: {fileID: 521874320768542540, guid: 05eb88367b8c849499f03d98df43f18e, type: 3}
     _spawnPoint: {fileID: 1977382793}
-    _amount: 35
-    _spawnDelay: 1
     _spawnRadius: 10
-    _spawnTime: 0.5
   - _unitName: PhantomArcher
     _spawnUnit: {fileID: 628543070733518247, guid: 50bf0a0b623b4734b8b59490773ae97f, type: 3}
     _spawnPoint: {fileID: 1187774619}
-    _amount: 10
-    _spawnDelay: 15
     _spawnRadius: 5
-    _spawnTime: 1
   - _unitName: ExplosiveBarbarian
     _spawnUnit: {fileID: 4265474383115142492, guid: 771ba3ca626acde4c9e88534ac715c25, type: 3}
     _spawnPoint: {fileID: 1624865623}
-    _amount: 1
-    _spawnDelay: 5
     _spawnRadius: 5
-    _spawnTime: 2
+  _levels:
+  - {fileID: 11400000, guid: f3f479acb6abbd247870678bf581ebf5, type: 2}
   _player: {fileID: 1972473696}
 --- !u!1001 &212474555
 PrefabInstance:
@@ -1782,8 +1775,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.53895354, y: 0.0000000527573, z: -0.000000033755832, w: 0.8423355}
-  m_LocalPosition: {x: -7.2564487, y: 14.092, z: -2.613579}
+  m_LocalRotation: {x: 0.54138577, y: -0.00000002893337, z: 0.000000018630583, w: 0.8407743}
+  m_LocalPosition: {x: -7.2564487, y: 12.092, z: -1.613579}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2480,7 +2473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 13, z: -6}
+  m_FollowOffset: {x: 0, y: 11, z: -5}
   m_XDamping: 3
   m_YDamping: 1
   m_ZDamping: 3

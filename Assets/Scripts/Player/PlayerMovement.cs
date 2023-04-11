@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace PigCastleDefence.Player
 {
@@ -28,6 +29,10 @@ namespace PigCastleDefence.Player
             moveDirection *= _moveSpeed;
             moveDirection.y = MyGravity.Instance.GetGravityHandling(_characterController.isGrounded);
             _characterController.Move(moveDirection * Time.deltaTime);
+        }
+        public void StayMoveDown()
+        {
+            if (!_characterController.isGrounded) _characterController.Move(new Vector3(0, MyGravity.Instance.GetGravityHandling(_characterController.isGrounded), 0) * Time.deltaTime);
         }
         public void RotateCharacter(Vector3 moveDirection)
         {

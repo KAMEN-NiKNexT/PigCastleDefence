@@ -34,6 +34,7 @@ namespace PigCastleDefence.Player
             else
             {
                 _weapon.Attack();
+                _playerMovement.StayMoveDown();
             }
         }
 

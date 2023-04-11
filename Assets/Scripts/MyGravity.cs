@@ -26,7 +26,7 @@ namespace PigCastleDefence
 
         public float GetGravityHandling(bool isGrounded)
         {
-            if (!isGrounded) return _gravityForce.y * Time.deltaTime;
+            if (!isGrounded) return _gravityForce.y;
             else return 0;
         }
         private void SetGravityForce() => _gravityForce = Physics.gravity;

@@ -21,6 +21,7 @@ namespace PigCastleDefence.Enemy
         [Header("Additional variables")]
         private Transform _target;
         private Vector3 _targetDirection;
+        private Vector3 _moveDirection;
         private float _distanceFromTarget;
         public Action OnMove;
 
@@ -37,7 +38,10 @@ namespace PigCastleDefence.Enemy
                 _agent.enabled = true;
                 _agent.SetDestination(_target.transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, _agent.transform.rotation, _rotationSpeed / Time.deltaTime);
-                _rigidbody.velocity = transform.forward * _moveSpeed;
+
+                _moveDirection = transform.forward * _moveSpeed;
+                _moveDirection.y = _rigidbody.velocity.y;
+                _rigidbody.velocity = _moveDirection;
 
                 ResetAgent();
                 return true;

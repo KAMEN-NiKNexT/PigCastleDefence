@@ -12,7 +12,6 @@ namespace PigCastleDefence
     {
         #region Classes
 
-        //TODO: Rename this struct
         [Serializable] private struct EnemySpawner
         {
             #region EnemySpawner Variables
@@ -21,10 +20,9 @@ namespace PigCastleDefence
             [SerializeField] private string _unitName;
             [SerializeField] private Unit _spawnUnit;
             [SerializeField] private Transform _spawnPoint;
-            [SerializeField] private int _amount;
-            [SerializeField] private float _spawnDelay;
             [SerializeField] private float _spawnRadius;
-            [SerializeField] private float _spawnTime;
+            private EnemyData _enemyData;
+            private bool _isEnable;
 
             #endregion
 
@@ -33,10 +31,21 @@ namespace PigCastleDefence
             public string UnitName { get => _unitName; }
             public Unit SpawnUnit { get => _spawnUnit; }
             public Transform SpawnPoint { get => _spawnPoint; }
-            public int Amount { get => _amount; }
-            public float SpawnDelay { get => _spawnDelay; }
             public float SpawnRadius { get => _spawnRadius; }
-            public float SpawnTime { get => _spawnTime; }
+            public EnemyData EnemyData 
+            { 
+                get => _enemyData; 
+                set
+                {
+                    if (value == null) _isEnable = false;
+                    else
+                    {
+                        _enemyData = value;
+                        _isEnable = true;
+                    }
+                }
+            }
+            public bool IsEnable { get => _isEnable; }
 
             #endregion
         }
@@ -45,11 +54,11 @@ namespace PigCastleDefence
 
         #region Variables
 
-        [SerializeField] private List<EnemySpawner> _enemySpawners = new List<EnemySpawner>();
+        [SerializeField] private EnemySpawner[] _enemySpawners;
+        [SerializeField] private Level[] _levels;
 
         private readonly KdTree<Unit> _enemies = new KdTree<Unit>();
         public GameObject _player;
-        //private List<Unit>
 
         #endregion
 
@@ -57,15 +66,27 @@ namespace PigCastleDefence
 
         private void Start()
         {
-            for(int i = 0; i < _enemySpawners.Count; i++)
+            SetUpEnemySpawner();
+            CreateEnemy();
+        }
+        private void CreateEnemy()
+        {
+            for (int i = 0; i < _enemySpawners.Length; i++)
             {
-                StartCoroutine(SpawnEnemies(_enemySpawners[i]));
+                if (_enemySpawners[i].IsEnable) StartCoroutine(SpawnEnemies(_enemySpawners[i]));
+            }
+        }
+        private void SetUpEnemySpawner()
+        {
+            for (int i = 0; i < _enemySpawners.Length; i++)
+            {
+                _enemySpawners[i].EnemyData = _levels[0].GetData(_enemySpawners[i].UnitName);
             }
         }
         private IEnumerator SpawnEnemies(EnemySpawner enemySpawner)
         {
-            yield return new WaitForSeconds(enemySpawner.SpawnDelay);
-            for (int i = 0; i < enemySpawner.Amount; i++)
+            yield return new WaitForSeconds(enemySpawner.EnemyData.DelayBeforeStartSpawn);
+            for (int i = 0; i < enemySpawner.EnemyData.Amount; i++)
             {
                 Vector3 spawnPosition = GetRandomSpawnPosition(enemySpawner.SpawnPoint, enemySpawner.SpawnRadius);
                 Unit enemy = Instantiate(enemySpawner.SpawnUnit, spawnPosition, Quaternion.identity);
@@ -74,7 +95,7 @@ namespace PigCastleDefence
                 enemy.GetComponent<EnemyMovement>().SetTarget(_player.transform);
                 _enemies.Add(enemy);
 
-                yield return new WaitForSeconds(enemySpawner.SpawnTime);
+                yield return new WaitForSeconds(enemySpawner.EnemyData.DelayBetweenSpawn);
             }
         }
 
